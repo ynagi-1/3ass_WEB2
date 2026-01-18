@@ -1,4 +1,3 @@
----
 
 ```markdown
 # Auction Backend (Assignment 3)

@@ -1,165 +1,148 @@
+# Auction App
 
-```markdown
-# Auction Backend (Assignment 3)
-
-A simple auction project using Node.js and MongoDB.  
-Allows creating, viewing, updating, and deleting lots via a REST API and a basic frontend.
+## Description
+This project is a simple web application for managing **auction lots**.  
+It allows users to **create, view, update, and delete lots** via a REST API.  
+All data is stored in **MongoDB**, and the frontend displays the lots in a clean, interactive interface.
 
 ---
 
-## 📁 Project Structure
+## Features
 
-```
+1. **Lot Management (Server-side)**  
+   - Title of the lot  
+   - Starting bid (number)  
+   - Description  
+   - Automatic timestamps (`createdAt` and `updatedAt`)  
 
+2. **Frontend Interaction**  
+   - Add new lots using a form  
+   - View all lots in a list  
+   - Data updates automatically after adding a new lot  
+
+3. **API Endpoints**  
+   - `GET /lots` — Get all lots  
+   - `GET /lots/:id` — Get a specific lot  
+   - `POST /lots` — Create a new lot  
+   - `PUT /lots/:id` — Update a lot  
+   - `DELETE /lots/:id` — Delete a lot  
+
+---
 backend_3ass/
-│
-├─ models/
-│   └─ Lot.js          # Lot model
-│
-├─ routes/
-│   └─ lots.js         # CRUD routes for lots
-│
-├─ public/
-│   └─ index.html      # Basic frontend
-│
-├─ server.js           # Express server
-└─ package.json
-
-````
+├── models/
+│ └── Lot.js # Lot model
+├── routes/
+│ └── lots.js # CRUD routes
+├── public/
+│ └── index.html # Frontend interface
+├── server.js # Express server
+├── package.json
+└── README.md
 
 ---
 
-## ⚙️ Installation
+## Setup Instructions
 
-1. Clone the project or copy the files to a folder on your computer.
-
-2. Open a terminal and navigate to the project folder:
+1. Clone the repository or copy the files:
 
 ```bash
-cd C:\WEB2_nodejs\3ass
-````
+git clone <repository_url>
+cd backend_3ass
+Install dependencies:
 
-3. Install dependencies:
-
-```bash
 npm install
-```
 
-4. Make sure **MongoDB is installed** locally. If not, download it from [MongoDB Community](https://www.mongodb.com/try/download/community) and install.
 
----
+Make sure MongoDB is installed locally.
+Start MongoDB server:
 
-## 🟢 Start MongoDB
-
-1. Open a new PowerShell or CMD window.
-2. Run the MongoDB server:
-
-```bash
 "C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe"
-```
 
-> The path may differ depending on your version and installation folder.
-> The server will run at `mongodb://127.0.0.1:27017`.
 
----
+Start the Node.js server:
 
-## 🚀 Run the Node.js Server
-
-1. Open another terminal and navigate to the project folder:
-
-```bash
-cd C:\WEB2_nodejs\3ass
-```
-
-2. Start the server:
-
-```bash
 npm start
-```
 
-3. You should see in the console:
 
-```
-MongoDB connected
-Server running at http://localhost:3000
-```
+Open the application in your browser:
 
----
-
-## 🌐 Frontend Usage
-
-1. Open a browser and go to:
-
-```
 http://localhost:3000
-```
 
-2. You will see a page with a form to add lots.
-3. Fields:
+Frontend Usage
 
-* `Lot title` — lot title
-* `Start bid` — starting bid (number)
-* `Description` — description of the lot
+Enter lot details in the form:
 
-4. Click **Add** to create a new lot.
-   The lot will appear in the list and be saved in MongoDB.
+Lot title — Title of the auction lot
 
----
+Start bid — Initial bid (number)
 
-## 📝 API Usage (Postman / curl)
+Description — Description of the lot
 
-* **GET /lots** — get all lots
-* **GET /lots/:id** — get a specific lot
-* **POST /lots** — create a lot
+Click Add to create a new lot.
 
-  ```json
-  {
-    "title": "Lot 1",
-    "startBid": 100,
-    "description": "Some description"
-  }
-  ```
-* **PUT /lots/:id** — update a lot
-* **DELETE /lots/:id** — delete a lot
+The lot appears in the list and is saved in MongoDB automatically.
 
----
+API Usage (Postman / curl)
 
-## ✅ Check Data in MongoDB
+GET /lots — retrieve all lots
 
-1. Open the mongo shell:
+GET /lots/:id — retrieve a specific lot
 
-```bash
+POST /lots — create a new lot
+
+{
+  "title": "Lot 1",
+  "startBid": 100,
+  "description": "Some description"
+}
+
+
+PUT /lots/:id — update a lot
+
+DELETE /lots/:id — delete a lot
+
+Checking Data in MongoDB
+
+Open mongo shell:
+
 "C:\Program Files\MongoDB\Server\6.0\bin\mongo.exe"
-```
 
-2. Switch to the database:
 
-```js
+Switch to the database:
+
 use auctionDB
-```
 
-3. View saved lots:
 
-```js
+View saved lots:
+
 db.lots.find().pretty()
-```
 
----
+Design Decisions
 
-## ⚡ Notes
+Server-side API: All CRUD operations are handled in Express
 
-* Recommended Node.js version: 18+
-* Mongoose version: 7+
-* All fields (title, startBid, description) are **required**
-* `startBid` must be a number
+Timestamps: Automatically tracks creation and update times
 
----
+Frontend: Simple interactive interface with live updates
 
-```
+Validation: Ensures all required fields are provided
 
----
+Example Frontend Output
 
-Если хочешь, я могу сразу прислать **готовый Postman Collection на все CRUD эндпоинты**, чтобы можно было тестировать их кнопками и сразу видеть изменения в базе.  
+Lot Example:
 
-Хочешь, чтобы я сделал это?
-```
+Lot 1 — 100$ — Some description
+Lot 2 — 50$ — Another description
+
+Notes
+
+Node.js 18+ recommended
+
+Mongoose 7+
+
+All fields (title, startBid, description) are required
+
+startBid must be a number
+
+## Project Structure
+

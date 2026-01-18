@@ -53,22 +53,18 @@ backend_3ass/
 1. Clone the repository or copy the files:
 
 ```bash
-git clone <repository_url>
-cd backend_3ass
+git clone https://github.com/ynagi-1/3ass_WEB2
+cd project
 ````
 
-2. Install dependencies:
+2. Install dependencies(if you dont have in package.json):
 
 ```bash
-npm install
+npm install cors express mongoose
 ```
 
 3. Make sure **MongoDB is installed** locally.
    Start MongoDB server:
-
-```bash
-"C:\Program Files\MongoDB\Server\6.0\bin\mongod.exe"
-```
 
 4. Start the Node.js server:
 
@@ -102,40 +98,24 @@ http://localhost:3000
 * **GET /lots** — retrieve all lots
 * **GET /lots/:id** — retrieve a specific lot
 * **POST /lots** — create a new lot
-
-  ```json
+* **PUT /lots/:id** — update a lot
+* **DELETE /lots/:id** — delete a lot
+   ```json
   {
     "title": "Lot 1",
     "startBid": 100,
     "description": "Some description"
   }
   ```
-* **PUT /lots/:id** — update a lot
-* **DELETE /lots/:id** — delete a lot
 
 ---
 
 ## Checking Data in MongoDB
 
-1. Open mongo shell:
+Open mongo db
+<img width="1753" height="860" alt="image" src="https://github.com/user-attachments/assets/35d84d03-e398-4929-97d5-62a7bd6358c3" />
 
-```bash
-"C:\Program Files\MongoDB\Server\6.0\bin\mongo.exe"
-```
 
-2. Switch to the database:
-
-```js
-use auctionDB
-```
-
-3. View saved lots:
-
-```js
-db.lots.find().pretty()
-```
-
----
 
 ## Design Decisions
 

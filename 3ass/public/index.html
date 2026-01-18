@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Auction Lots</title>
+</head>
+<body>
+  <h2>Auction Lots</h2>
+
+  <div>
+    <input id="title" placeholder="Lot title">
+    <input id="startBid" placeholder="Start bid" type="number">
+    <input id="description" placeholder="Description">
+    <button onclick="addLot()">Add</button>
+  </div>
+
+  <ul id="list"></ul>
+
+  <script>
+    async function load() {
+      const list = document.getElementById('list');
+      const res = await fetch('/lots');
+      const data = await res.json();
+
+      list.innerHTML = data.map(l =>
+        `<li>${l.title} — ${l.startBid}$ — ${l.description}</li>`
+      ).join('');
+    }
+
+    async function addLot() {
+      const titleInput = document.getElementById('title');
+      const startBidInput = document.getElementById('startBid');
+      const descInput = document.getElementById('description');
+
+      if (!titleInput.value || !startBidInput.value || !descInput.value) {
+        alert("All fields are required!");
+        return;
+      }
+
+      await fetch('/lots', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: titleInput.value,
+          startBid: Number(startBidInput.value),
+          description: descInput.value
+        })
+      });
+
+      titleInput.value = "";
+      startBidInput.value = "";
+      descInput.value = "";
+
+      load();
+    }
+
+    window.onload = load;
+  </script>
+</body>
+</html>

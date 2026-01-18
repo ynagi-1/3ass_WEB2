@@ -1,7 +1,3 @@
-
----
-
-```markdown
 # Auction App
 
 ## Description
